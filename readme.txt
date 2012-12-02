@@ -4,9 +4,9 @@ How-to:
 
 1. Create a database named CI05.
 
-2. Import the MySQL schema file (schema.sql).  This will also create several clssification categories and 
-   eight posts that hve been classified across the range of the categories.  You can use this content as
-   test case for improvements to classification and filtering.
+2. Import the MySQL schema file (schema.sql).  This will also create several classification categories and 
+   eight posts that have been classified across the range of the categories.  You can use this content as
+   a test case for improvements to classification and filtering.
 
 3. Change the config.php and database.php according to your settings.
 
