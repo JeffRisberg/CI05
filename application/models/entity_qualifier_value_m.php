@@ -55,7 +55,7 @@ class Entity_qualifier_value_m extends CI_Model {
 	}
 	
 	/**
-	 * specific ids known
+	 * specific id known
 	 */	
 	public function get_any($entity_type, $entity_id) {
 		$this->db->select('eqv.*, qv.value value');
@@ -65,6 +65,34 @@ class Entity_qualifier_value_m extends CI_Model {
 		$this->db->where('entity_id', $entity_id);
 	
 		return $this->db->get()->result();
+	}
+	
+	/**
+	 * specific id known
+	 */
+	public function get_mask($entity_type, $entity_id) {
+		$this->db->select('max(id) as count');
+		$this->db->from('qualifier_values');
+		$countX = $this->db->get()->result();
+		$count = (int) ($countX[0]->count);	
+		
+		$this->db->select('eqv.qualifier_value_id as id');
+		$this->db->from('entity_qualifier_value eqv');
+		$this->db->where('entity_type', $entity_type);
+		$this->db->where('entity_id', $entity_id);
+	
+		$qualifier_value_ids = $this->db->get()->result();
+		
+		$mask = array();
+		
+		for ($i = 0; $i < $count; $i++) {
+	    $mask[$i] = 0;
+		}
+		foreach ($qualifier_value_ids as $qualifier_value_id) {
+			$mask[(int) ($qualifier_value_id->id)] = 1;
+		}
+		
+		return $mask;
 	}
 	
 	/**

@@ -5,7 +5,8 @@ $route['404_override'] = '';
 
 $route['about'] = 'about/index';
 $route['new-post'] = 'post/create';
-$route['post/(:num)'] = 'post/show/$1';
+$route['post/(:num)'] = 'post/view/$1';
+$route['similar/(:num)'] = 'similar/index/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

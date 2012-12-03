@@ -111,20 +111,20 @@ div.post{
 
 div.post .title{
 	float:left;
-	width:600px;
+	width:550px;
+	margin-top: 0px;
+	padding-top: 0px;
 }
 
 div.post .meta{
 	display:block;
 }
 
-div.post .date{
-	float:right;
-	width:199px;
-	text-align:right;
-	margin-top:15px;
-	font-size:12px;
-	font-weight:bold;
+div.post .right {
+  float:right;  
+  text-align:right; 
+  font-size:12px;
+  font-weight:bold;
 }
 
 div.post .categories{

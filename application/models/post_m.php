@@ -16,6 +16,12 @@ class Post_m extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_all_ids() {
+		$this->db->select('id as id');
+		$query = $this->db->get('posts');
+		return $query->result();
+	}
+	
 	function insert($image) {
 		$date = date('Y-m-d H:i:s');
 		$data = array(
@@ -53,6 +59,17 @@ class Post_m extends CI_Model {
 		$this->db->like('post_id', $id);
 		$this->db->from('comments');
 		return $this->db->count_all_results();
+	}
+	
+	function get_from_matches($matches) {
+		$ids = array();
+		foreach ($matches as $key => $value) {
+			$ids[] = $key;
+		}
+		$ids_str = implode(',', $ids); 
+		$sql = "SELECT * FROM posts WHERE id in ($ids_str) order by FIELD(id, $ids_str)";			
+		$query = $this->db->query($sql);
+		return $query->result();
 	}
 }
 

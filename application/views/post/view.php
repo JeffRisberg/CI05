@@ -4,13 +4,14 @@
   </div>
   <div class="post meta">
   	<div class="title">
-  	  <h2 style="margin-left: 0px"><?php echo $post->title; ?></h2>
+  	  <h2 style="margin-left: 0px; margin-top: 0px;"><?php echo $post->title; ?></h2>
    	</div>
-    <div class="date">
-        <?php date_default_timezone_set('Etc/UTC');
-			      $phpdate = strtotime($post->date_created . " + 1 hour");
-			      date_default_timezone_set('America/Los_Angeles');
-            echo date('m/d/Y H:i:s', $phpdate); ?>     
+   	<div class="right">
+   	  <?php echo anchor("/similar/" . $post->id, "Show Similar Posts"); ?>   	
+      <?php date_default_timezone_set('Etc/UTC');
+			    $phpdate = strtotime($post->date_created . " + 1 hour");
+			    date_default_timezone_set('America/Los_Angeles');
+          echo date('m/d/Y H:i:s', $phpdate); ?>     
     </div>
     <br clear="all" />
     

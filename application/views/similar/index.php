@@ -2,6 +2,26 @@
 	echo '<p class="success">'.$this->session->flashdata('message').'</p>';
 } ?>
 
+<div class="post">  
+	<div class="post meta">
+	  <h2 style="margin-left: 0px; margin-top: 0px;">
+		  Posts similar to "<?php echo $basis->title ?>"					 	
+		</h2>
+		 <?php if (!empty($basis->entity_qualifier_values)) { ?>
+			<div class="categories">
+			  Posted in
+			  <?php $atFirst = true;
+			    foreach ($basis->entity_qualifier_values as $entity_qualifier_value) { 
+			  	  if (!$atFirst) echo ", ";
+			  	  echo $entity_qualifier_value->value; 	  	  
+			  	  $atFirst = false;
+			  } ?>
+			</div>
+		<?php } ?>	
+	</div>
+</div>
+<p>&nbsp;</p>
+
 <?php if ($posts): foreach($posts as $post):?>
 <div class="post">
   <div style="float: left; margin-right: 5px">
@@ -34,11 +54,8 @@
 			</div>
 		<?php } ?>
 	</div><!-- Close meta -->
-	<p>
-		<?php echo $post->body ?>
-	</p>
 	<hr />
 </div><!-- Close post -->
 <?php endforeach; else: ?>
-  <h2>No posts yet</h2>
+  <h2>No posts match</h2>
 <?php endif; ?>

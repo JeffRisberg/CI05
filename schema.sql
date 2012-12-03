@@ -69,7 +69,7 @@ insert into qualifier_values (id, qualifier_id, value) values (16, 2, 'Household
 insert into qualifier_values (id, qualifier_id, value) values (17, 2, 'Other');
 
 insert into posts (title, body, date_created) values
-('Paper usage in finance industry', 
+('Paper usage in the finance industry', 
 'Sustainability leaders are helping firms reduce the amount of paper usage, by reducing printing of documents.', 
 now());
 insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 1, 3);
@@ -124,4 +124,19 @@ insert into posts (title, body, date_created) values
 now());
 insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 8, 1);
 insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 8, 16);
+
+insert into posts (title, body, date_created) values
+('Telsa model S enters production', 
+'The Model S sedan is now avialable in limited production.', 
+now());
+insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 9, 4);
+insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 9, 10);
+
+insert into posts (title, body, date_created) values
+('City of Palo Alto considers plans for waste recycling', 
+'Approaches include anerobic digestion and others.  Measure E passed in fall 2011, indicating voter interest', 
+now());
+insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 10, 1);
+insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 10, 3);
+insert into entity_qualifier_value (entity_type, entity_id, qualifier_value_id) values ('POST', 10, 14);
 
