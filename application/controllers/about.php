@@ -9,8 +9,8 @@ class About extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		
-		$this->load->model('post_model');
-		$this->load->model('comment_model');
+		$this->load->model('post_m');
+		$this->load->model('comment_m');
 	}
 	
 	public function index() {
