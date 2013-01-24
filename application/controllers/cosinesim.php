@@ -2,7 +2,7 @@
 
 /**
  * @author Chirag Bhatt
- * @since 2013
+ * @since January 2013
  */
 class Cosinesim extends CI_Controller {
 
