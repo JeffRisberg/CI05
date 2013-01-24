@@ -14,7 +14,8 @@ class About extends CI_Controller {
 	}
 	
 	public function index() {
-		$data['title'] = "About";
+		$data['title'] = "About Elephant";
+		$data['monthes'] = array( 1 => "Jan", 2 => "Feb", 3 => "March", 4=> "April", 5=> "May", 6 => "June");
 		$this->load->view('about/index', $data);
 	}
 }

@@ -3,6 +3,8 @@
 /**
  * @author Jeff Risberg
  * @since late summer 2012
+ * 
+ * @modifications and bugs introduced by Chirag Bhatt since 2013
  */
 class Entity_qualifier_value_m extends CI_Model {
 
@@ -92,6 +94,32 @@ class Entity_qualifier_value_m extends CI_Model {
 			$mask[(int) ($qualifier_value_id->id)] = 1;
 		}
 		
+		return $mask;
+	}
+	
+	public function get_score_mask($entity_type, $entity_id) {
+		$this->db->select('max(id) as count');
+		$this->db->from('qualifier_values');
+		$countX = $this->db->get()->result();
+		$count = (int) ($countX[0]->count);
+	
+		$this->db->select('eqv.qualifier_value_id as id, eqv.qualifier_value_score as score');
+		$this->db->from('entity_qualifier_value eqv');
+		$this->db->where('entity_type', $entity_type);
+		$this->db->where('entity_id', $entity_id);
+	
+		$qualifier_value_ids = $this->db->get()->result();
+		var_dump($qualifier_value_ids);
+	
+		$mask = array();
+	
+		for ($i = 0; $i < $count; $i++) {
+			$mask[$i] = 0;
+		}
+		foreach ($qualifier_value_ids as $qualifier_value_id) {
+			$mask[(int) ($qualifier_value_id->id)] = eqv.qualifier_value_score; //figure out how to get the score value????
+		}
+	
 		return $mask;
 	}
 	
