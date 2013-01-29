@@ -3,6 +3,7 @@
 /**
  * @author Chirag Bhatt
  * @since January 2013
+ * @based of similar.php
  */
 class Cosinesim extends CI_Controller {
 
@@ -26,9 +27,10 @@ class Cosinesim extends CI_Controller {
 	public function index($basis_id = 0) {
 		
 		$this->data->basis = $this->post_m->get($basis_id);
+		var_dump($basis_id);
 		$this->data->basis->entity_qualifier_values = $this->entity_qualifier_value_m->get_any(self::c_EntityType, $basis_id);
 		$basis_qualifiers_mask = $this->entity_qualifier_value_m->get_score_mask(self::c_EntityType, $basis_id);
-		//var_dump($basis_qualifiers_mask);
+		var_dump($basis_qualifiers_mask);
 		
 		//Normalize the scores for basis document
 		$sum_squares = 0;
