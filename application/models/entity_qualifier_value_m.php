@@ -109,7 +109,7 @@ class Entity_qualifier_value_m extends CI_Model {
 		$this->db->where('entity_id', $entity_id);
 	
 		$qualifier_value_ids = $this->db->get()->result();
-		var_dump($qualifier_value_ids);
+		//var_dump($qualifier_value_ids);
 	
 		$mask = array();
 	
@@ -117,9 +117,9 @@ class Entity_qualifier_value_m extends CI_Model {
 			$mask[$i] = 0;
 		}
 		foreach ($qualifier_value_ids as $qualifier_value_id) {
-			$mask[(int) ($qualifier_value_id->id)] = eqv.qualifier_value_score; //figure out how to get the score value????
+			$mask[(int) ($qualifier_value_id->id)] = (int)$qualifier_value_id->score; //figure out how to get the score value????
 		}
-	
+		//var_dump($mask);
 		return $mask;
 	}
 	

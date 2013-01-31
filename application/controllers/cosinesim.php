@@ -27,10 +27,9 @@ class Cosinesim extends CI_Controller {
 	public function index($basis_id = 0) {
 		
 		$this->data->basis = $this->post_m->get($basis_id);
-		var_dump($basis_id);
 		$this->data->basis->entity_qualifier_values = $this->entity_qualifier_value_m->get_any(self::c_EntityType, $basis_id);
 		$basis_qualifiers_mask = $this->entity_qualifier_value_m->get_score_mask(self::c_EntityType, $basis_id);
-		var_dump($basis_qualifiers_mask);
+		//var_dump($basis_qualifiers_mask);
 		
 		//Normalize the scores for basis document
 		$sum_squares = 0;
@@ -47,8 +46,7 @@ class Cosinesim extends CI_Controller {
 		foreach ($ids as $id) {
 			$id = (int) ($id->id);
 			if ($id != $basis_id) {
-				$this->data->basis->entity_qualifier_values = $this->entity_qualifier_value_m->get_any(self::c_EntityType, $basis_id);
-				$qualifiers_mask = $this->entity_qualifier_value_m->get_score_mask(self::c_EntityType, $basis_id);
+				$qualifiers_mask = $this->entity_qualifier_value_m->get_score_mask(self::c_EntityType, $id);
 				//var_dump($qualifiers_mask);
 
 				//Normalize the scores for this document
@@ -66,14 +64,15 @@ class Cosinesim extends CI_Controller {
 				for ($i = 0; $i < sizeof($qualifiers_mask); $i++) {
 					$dotprod += $qualifiers_mask[$i] * $basis_qualifiers_mask[$i];
 				}
-				//var_dump($dotprod);
 				if ($dotprod > 0) {
 					$dotprods[$id] = $dotprod;
 				}
 			}
 		}
-		arsort($dotprods);
 		//var_dump($dotprods);
+		arsort($dotprods);
+		echo "sorted dot products";
+		var_dump($dotprods);
 		
 		$this->data->posts = $this->post_m->get_from_matches($dotprods);
 		
